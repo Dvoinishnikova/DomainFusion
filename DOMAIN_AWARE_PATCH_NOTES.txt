@@ -1,0 +1,12 @@
+Domain-aware v3 redesign
+
+The previous v2 patch is obsolete. It conditioned the LSTM only on left/right
+InterPro ID embeddings in the initial recurrent state. That architecture was
+sparse, did not generalize to unseen pairs, and could ignore the conditioning.
+
+v3 conditions on terminal domain sequences, recurrently observed domain IDs,
+domain lengths, and predicted target linker length. The context is injected at
+every decoder step. Dataset construction, validation splitting, generation,
+structural scoring, and analysis were rewritten accordingly.
+
+See README.md and MIGRATION_NOTES.md. Old checkpoints must be retrained.
